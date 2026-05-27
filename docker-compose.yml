@@ -74,7 +74,7 @@ services:
       dockerfile: Dockerfile
     container_name: spring_backend
     ports:
-      - "8080:8080"
+      - "8085:8080"
     environment:
       SPRING_DATASOURCE_URL: jdbc:mariadb://mariadb:3306/springboot
       SPRING_DATASOURCE_USERNAME: spring
@@ -101,7 +101,7 @@ services:
       - "3030:3030"
     environment:
       PORT: 3030
-      REACT_APP_API_URL: http://localhost:8080/api
+      REACT_APP_API_URL: http://localhost:8085/api
       WDS_SOCKET_PORT: 0
     depends_on:
       - backend

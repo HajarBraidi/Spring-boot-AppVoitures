@@ -1,22 +1,10 @@
 import React from 'react';
-import { Navbar, Container, Col } from 'react-bootstrap';
 
-class Footer extends React.Component {
-  render() {
-    // Année courante calculée dynamiquement
-    let fullYear = new Date().getFullYear();
-    return (
-      <Navbar fixed="bottom" bg="dark" variant="dark">
-        <Container>
-          <Col lg={12} className="text-center text-muted">
-            <div>
-              {fullYear}-{fullYear + 1}, All Rights Reserved by Master MIOLA
-            </div>
-          </Col>
-        </Container>
-      </Navbar>
-    );
-  }
+export default function Footer() {
+  const year = new Date().getFullYear();
+  return (
+    <footer className="footer-pro">
+      © {year} Shop · Tous droits réservés · Master
+    </footer>
+  );
 }
-
-export default Footer;

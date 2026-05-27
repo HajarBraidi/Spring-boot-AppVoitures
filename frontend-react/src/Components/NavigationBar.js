@@ -1,38 +1,28 @@
 import React from 'react';
-import { Navbar, Nav } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-import logo from '../assets/logo.png';
+import { Link, useLocation } from 'react-router-dom';
 
-export default class NavigationBar extends React.Component {
-  render() {
-    return (
-      <Navbar bg="dark" variant="dark">
 
-        {/* Logo / Brand → retour à l'accueil */}
-        <Link to={""} className="navbar-brand">
-          <img
-            src={logo}
-            width="40"
-            height="40"
-            alt="logo"
-            style={{
-              objectFit: 'cover',
-              borderRadius: '8px',
-              marginRight: '10px'
-            }}
-          />
-          {' '}MIOLA Shop
+export default function NavigationBar() {
+  const location = useLocation();
+  const isActive = (path) => location.pathname === path || (path !== '/' && location.pathname.startsWith(path));
+
+  return (
+    <nav className="navbar-custom">
+      <Link to="/" className="navbar-brand-custom">
+        <span>Shop</span>
+      </Link>
+
+      <div className="navbar-links">
+        <Link to="/add"       className={`nav-link-custom ${isActive('/add') ? 'active' : ''}`}>
+          + Ajouter
         </Link>
-
-        <Nav className="mr-auto">
-          {/* Lien vers le formulaire d'ajout */}
-          <Link to={"add"}  className="nav-link"> Ajouter une voiture </Link>
-          {/* Lien vers la liste */}
-          <Link to={"list"} className="nav-link"> Liste des Voitures  </Link>
-          <Link to={"assistant"} className="nav-link"> Demander à l'assistant  </Link>
-        </Nav>
-
-      </Navbar>
-    );
-  }
+        <Link to="/list"      className={`nav-link-custom ${isActive('/list') ? 'active' : ''}`}>
+          Catalogue
+        </Link>
+        <Link to="/assistant" className={`nav-link-custom ${isActive('/assistant') ? 'active' : ''}`}>
+          Assistant IA
+        </Link>
+      </div>
+    </nav>
+  );
 }
